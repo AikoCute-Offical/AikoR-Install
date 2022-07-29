@@ -258,7 +258,7 @@ show_log() {
 }
 
 install_bbr() {
-    bash <(curl -L -s https://raw.githubusercontent.com/AikoCute-Offical/BBR/aiko/tcp.sh)
+    bash <(curl -L -s https://raw.githubusercontent.com/AikoCute-Offical/Linux-BBR/aiko/tcp.sh)
 }
 
 update_shell() {
