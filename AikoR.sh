@@ -8,7 +8,7 @@ plain='\033[0m'
 version="v1.0.0"
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} This script must be run as root user!\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}Lỗi: ${plain} Tập lệnh này phải được chạy với tư cách người dùng root!\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -26,7 +26,7 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
-    echo -e "${red}The system version is not detected, please contact AikoCute to get it fixed as soon as possible${plain}\n" && exit 1
+    echo -e "${red}Phiên bản hệ thống không được phát hiện, vui lòng liên hệ AikoCute để được khắc phục trong thời gian sớm nhất${plain}\n" && exit 1
 fi
 
 os_version=""
@@ -70,7 +70,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "Is it possible to restart AikoR" "y"
+    confirm "Có thể khởi động lại AikoR không" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -79,7 +79,7 @@ confirm_restart() {
 }
 
 before_show_menu() {
-    echo && echo -n -e "${yellow}Press enter to return to the main menu: ${plain}" && read temp
+    echo && echo -n -e "${yellow}Nhấn enter để quay lại menu chính: ${plain}" && read temp
     show_menu
 }
 
@@ -96,7 +96,7 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Enter the specified version (default latest version): " && read version
+        echo && echo -n -e "Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định): " && read version
     else
         version=$2
     fi
@@ -110,7 +110,7 @@ update() {
 #    fi
     bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh) $version
     if [[ $? == 0 ]]; then
-        echo -e "${green}Update completed, AikoR has been restarted automatically, please use AikoR logs to see the results${plain}"
+        echo -e "${green}Cập nhật hoàn tất, AikoR đã được khởi động lại tự động, vui lòng sử dụng nhật ký AikoR để xem kết quả${plain}"
         exit
     fi
 
@@ -120,16 +120,16 @@ update() {
 }
 
 config() {
-    echo "AikoR will automatically restart after configuration modification"
+    echo "AikoR sẽ tự động khởi động lại sau khi sửa đổi cấu hình"
     nano /etc/AikoR/aiko.yml
     sleep 2
     check_status
     case $? in
         0)
-            echo -e "AikoR status: ${green} Running ${plain}"
+            echo -e "Trạng thái AikoR: ${green} Running ${plain}"
             ;;
         1)
-            echo -e "It is detected that you do not start AikoR or AikoR does not restart by itself, check the log？[Y/n]" && echo
+            echo -e "Phát hiện rằng bạn không khởi động AikoR hoặc AikoR không tự khởi động lại, hãy kiểm tra nhật ký？[Y/n]" && echo
             read -e -p "(yes or no):" yn
             [[ -z ${yn} ]] && yn="y"
             if [[ ${yn} == [Yy] ]]; then
@@ -137,12 +137,12 @@ config() {
             fi
             ;;
         2)
-            echo -e "AikoR status: ${red} Not installed ${plain}"
+            echo -e "Trạng thái AikoR: ${red} Không được cài đặt ${plain}"
     esac
 }
 
 uninstall() {
-    confirm "Are you sure you want to uninstall AikoR?" "n"
+    confirm "Bạn có chắc chắn muốn gỡ cài đặt AikoR không?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -159,7 +159,7 @@ uninstall() {
     rm /usr/bin/AikoR -f
 
     echo ""
-    echo -e "${green}Uninstall successful, Completely uninstalled from the system${plain}"
+    echo -e "${green}Gỡ cài đặt thành công, Gỡ cài đặt hoàn toàn khỏi hệ thống${plain}"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -171,15 +171,15 @@ start() {
     check_status
     if [[ $? == 0 ]]; then
         echo ""
-        echo -e "${green} AikoR is already running ${plain}"
+        echo -e "${green} AikoR đã chạy ${plain}"
     else
         systemctl start AikoR
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            echo -e "${green} AikoR has successfully started ${plain}"
+            echo -e "${green} AikoR đã bắt đầu thành công ${plain}"
         else
-            echo -e "${red} AikoR boot failed, AikoR logs to check for errors${plain}"
+            echo -e "${red} Khởi động AikoR không thành công, AikoR ghi nhật ký để kiểm tra lỗi${plain}"
         fi
     fi
 
@@ -193,9 +193,9 @@ stop() {
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
-        echo -e "${green} AikoR has stopped successfully ${plain}"
+        echo -e "${green} AikoR đã dừng thành công ${plain}"
     else
-        echo -e "${red} AikoR cannot be stopped, it may be due to the stopping time exceeding two seconds, please check the Logs to see the cause ${plain}"
+        echo -e "${red} AikoR không thể dừng lại, có thể do thời gian dừng quá hai giây, vui lòng kiểm tra Nhật ký để xem nguyên nhân ${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -208,9 +208,9 @@ restart() {
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        echo -e "${green} AikoR has restarted successfully, please use AikoR Logs to see the running log ${plain}"
+        echo -e "${green} AikoR đã khởi động lại thành công, vui lòng sử dụng AikoR Logs để xem nhật ký đang chạy ${plain}"
     else
-        echo -e "${red} AikoR may not be able to start, please use AikoR Logs to view log information later ${plain}"
+        echo -e "${red} AikoR có thể không khởi động được, vui lòng sử dụng Nhật ký AikoR để xem thông tin nhật ký sau ${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -227,9 +227,9 @@ status() {
 enable() {
     systemctl enable AikoR
     if [[ $? == 0 ]]; then
-        echo -e "${green} AikoR is set to boot successfully ${plain}"
+        echo -e "${green} AikoR được thiết lập để khởi động thành công ${plain}"
     else
-        echo -e "${red} AikoR setup can't start automatically on boot ${plain}"
+        echo -e "${red} Thiết lập AikoR không thể tự động bắt đầu khi khởi động ${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -240,9 +240,9 @@ enable() {
 disable() {
     systemctl disable AikoR
     if [[ $? == 0 ]]; then
-        echo -e "${green} AikoR aborted autostart successfully ${plain}"
+        echo -e "${green} AikoR đã hủy tự động khởi động thành công ${plain}"
     else
-        echo -e "${red} AikoR can't cancel boot autostart ${plain}"
+        echo -e "${red} AikoR không thể hủy tự động khởi động khởi động ${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -265,11 +265,11 @@ update_shell() {
     wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
     if [[ $? != 0 ]]; then
         echo ""
-        echo -e "${red}Script failed to download, please check if machine can connect to Github${plain}"
+        echo -e "${red}Tập lệnh không tải xuống được, vui lòng kiểm tra xem máy có thể kết nối với Github không${plain}"
         before_show_menu
     else
         chmod +x /usr/bin/AikoR
-        echo -e "${green} Script upgrade successful, please run the script again ${plain}" && exit 0
+        echo -e "${green} Nâng cấp tập lệnh thành công, vui lòng chạy lại tập lệnh ${plain}" && exit 0
     fi
 }
 
@@ -299,7 +299,7 @@ check_uninstall() {
     check_status
     if [[ $? != 2 ]]; then
         echo ""
-        echo -e "${red} AikoR is already installed, please do not reinstall ${plain}"
+        echo -e "${red} AikoR đã được cài đặt, vui lòng không cài đặt lại ${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -313,7 +313,7 @@ check_install() {
     check_status
     if [[ $? == 2 ]]; then
         echo ""
-        echo -e "${red} Please install AikoR first ${plain}"
+        echo -e "${red} Vui lòng cài đặt AikoR trước ${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -327,24 +327,24 @@ show_status() {
     check_status
     case $? in
         0)
-            echo -e "AikoR status: ${green} Running ${plain}"
+            echo -e "Trạng thái AikoR: ${green} Running ${plain}"
             show_enable_status
             ;;
         1)
-            echo -e "AikoR status: ${yellow} don't run ${plain}"
+            echo -e "Trạng thái AikoR: ${yellow} don't run ${plain}"
             show_enable_status
             ;;
         2)
-            echo -e "AikoR status: ${red} Not Install ${plain}"
+            echo -e "Trạng thái AikoR: ${red} Not Install ${plain}"
     esac
 }
 
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "Does it automatically start: ${green} Yes ${plain}"
+        echo -e "Nó có tự động bắt đầu không: ${green} Yes ${plain}"
     else
-        echo -e "Does it automatically start: ${red} No ${plain}"
+        echo -e "Nó có tự động bắt đầu không: ${red} No ${plain}"
     fi
 }
 
@@ -376,22 +376,22 @@ show_menu() {
   ${green}2.${plain} Update AikoR
   ${green}3.${plain} Uninstall AikoR
 ————————————————
-  ${green}4.${plain} Launch AikoR
+  ${green}4.${plain} Chạy AikoR
   ${green}5.${plain} Stop AikoR
   ${green}6.${plain} Khởi động lại AikoR
-  ${green}7.${plain} View AikoR status
-  ${green}8.${plain} View AikoR logs
+  ${green}7.${plain} Trạng Thái AikoR
+  ${green}8.${plain} Logs AikoR
 ————————————————
-  ${green}9.${plain} Set AikoR to start automatically
- ${green}10.${plain} Canceling AikoR autostart
+  ${green}9.${plain} Đặt AikoR để bắt đầu tự động
+ ${green}10.${plain} Hủy tự động khởi động AikoR
 ————————————————
- ${green}11.${plain} Install BBR
- ${green}12.${plain} View AikoR version
+ ${green}11.${plain} Cài đặt BBR
+ ${green}12.${plain} Phiên bản AikoR
  ${green}13.${plain} Update AikoR shell
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
-    echo && read -p "Please enter an option [0-13]: " num
+    echo && read -p "Vui lòng nhập một tùy chọn [0-13]: " num
 
     case "${num}" in
         0) config

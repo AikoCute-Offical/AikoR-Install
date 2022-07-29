@@ -126,7 +126,7 @@ install_AikoR() {
         echo -e "Bắt đầu cài đặt AikoR v$1"
         wget -N --no-check-certificate -O /usr/local/AikoR/AikoR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Download AikoR v$1 Failed, make sure this version exists${plain}"
+            echo -e "${red}Tải xuống AikoR v $ 1 Không thành công, hãy đảm bảo rằng phiên bản này tồn tại${plain}"
             exit 1
         fi
     fi
@@ -142,23 +142,23 @@ install_AikoR() {
     systemctl daemon-reload
     systemctl stop AikoR
     systemctl enable AikoR
-    echo -e "${green}AikoR ${last_version}${plain} The installation is complete, it is already set to start automatically"
+    echo -e "${green}AikoR ${last_version}${plain} Quá trình cài đặt hoàn tất, nó đã được thiết lập để bắt đầu tự động"
     cp geoip.dat /etc/AikoR/
     cp geosite.dat /etc/AikoR/ 
 
     if [[ ! -f /etc/AikoR/aiko.yml ]]; then
         cp aiko.yml /etc/AikoR/
         echo -e ""
-        echo -e "New installation, please refer to previous tutorial：https://github.com/AikoCute-Offical/AikoR，Configure required content"
+        echo -e "Cài đặt mới, vui lòng tham khảo hướng dẫn trước ： https: //github.com/AikoCute-Offical/AikoR，Configure nội dung yêu cầu"
     else
         systemctl start AikoR
         sleep 2
         check_status
         echo -e ""
         if [[ $? == 0 ]]; then
-            echo -e "${green}AikoR reboot successfully${plain}"
+            echo -e "${green}AikoR khởi động lại thành công${plain}"
         else
-            echo -e "${red}AikoR May not start, please use the following AikoR log Check the log information, if it fails to start, the configuration format may have been changed, please go to the wiki to check：https://github.com/AikoCute-Offical/AikoR${plain}"
+            echo -e "${red}AikoR Có thể không khởi động, vui lòng sử dụng nhật ký AikoR sau Kiểm tra thông tin nhật ký, nếu không khởi động được, định dạng cấu hình có thể đã bị thay đổi, vui lòng vào wiki để kiểm tra ： https://github.com/AikoCute-Offical/ AikoR${plain}"
         fi
     fi
 
@@ -177,14 +177,14 @@ install_AikoR() {
     chmod +x /usr/bin/AikoR
 
     echo -e ""
-    echo " How to use the AikoR . management script " 
+    echo " Cách sử dụng AikoR. kịch bản quản lý     " 
     echo "------------------------------------------"
     echo "           AikoR   - Show admin menu      "
     echo "               AikoR by AikoCute          "
     echo "------------------------------------------"
 }
 
-echo -e "${green}Start installation${plain}"
+echo -e "${green}Bắt đầu cài đặt${plain}"
 install_base
 install_acme
 install_AikoR $1
