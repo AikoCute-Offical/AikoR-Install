@@ -10,7 +10,7 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}Error：${plain} This script must be run as root user!\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}Lỗi：${plain} Tập lệnh này phải được chạy với tư cách người dùng root!\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -28,7 +28,7 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
-    echo -e "${red}System version not detected, please contact script author!${plain}\n" && exit 1
+    echo -e "${red}Phiên bản hệ thống không được phát hiện, vui lòng liên hệ với tác giả kịch bản!${plain}\n" && exit 1
 fi
 
 arch=$(arch)
@@ -39,13 +39,13 @@ elif [[ $arch == "aarch64" || $arch == "arm64" ]]; then
   arch="arm64-v8a"
 else
   arch="64"
-  echo -e "${red}No schema detected, use default schema: ${arch}${plain}"
+  echo -e "${red}Không có lược đồ nào được phát hiện, hãy sử dụng lược đồ mặc định: ${arch}${plain}"
 fi
 
 echo "Architecture System: ${arch}"
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
-    echo "This software does not support 32-bit (x86) system, please use 64-bit (x86_64) system, if found wrong, please contact the author"
+    echo "Phần mềm này không hỗ trợ hệ thống 32-bit (x86), vui lòng sử dụng hệ thống 64-bit (x86_64), nếu phát hiện sai, vui lòng liên hệ với tác giả"
     exit 2
 fi
 
@@ -111,13 +111,13 @@ install_AikoR() {
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/AikoCute-Offical/AikoR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}AikoR version detection failed, maybe GIthub API limit exceeded, please try again later or specify AikoR version setting manually${plain}"
+            echo -e "${red}Không phát hiện được phiên bản AikoR, có thể đã vượt quá giới hạn Github API, vui lòng thử lại sau hoặc chỉ định cài đặt phiên bản AikoR theo cách thủ công${plain}"
             exit 1
         fi
         echo -e "The latest version of AikoR has been detected：${last_version}，Start the installation"
         wget -N --no-check-certificate -O /usr/local/AikoR/AikoR-linux.zip https://github.com/AikoCute-Offical/AikoR/releases/download/${last_version}/AikoR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}AikoR download failed, make sure your server can download Github files${plain}"
+            echo -e "${red}Tải xuống AikoR không thành công, hãy đảm bảo máy chủ của bạn có thể tải xuống tệp Github${plain}"
             exit 1
         fi
     else
