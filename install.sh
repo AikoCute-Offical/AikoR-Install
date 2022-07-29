@@ -173,8 +173,8 @@ install_AikoR() {
     fi
     curl -o /usr/bin/AikoR -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
     chmod +x /usr/bin/AikoR
-    ln -s /usr/bin/AikoR /usr/bin/AikoR # compatible lowercase
-    chmod +x /usr/bin/AikoR
+    ln -s /usr/bin/AikoR /usr/bin/aikor # compatible lowercase
+    chmod +x /usr/bin/aikor
 
     echo -e ""
     echo " Cách sử dụng AikoR. kịch bản quản lý     " 
