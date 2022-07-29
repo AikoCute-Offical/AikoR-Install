@@ -123,7 +123,7 @@ install_AikoR() {
     else
         last_version=$1
         url="https://github.com/AikoCute-Offical/AikoR/releases/download/${last_version}/AikoR-linux-${arch}.zip"
-        echo -e "Bắt đầu cài đặt AikoR v$1"
+        echo -e "AikoR starts up v$1"
         wget -N --no-check-certificate -O /usr/local/AikoR/AikoR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Download AikoR v$1 Failed, make sure this version exists${plain}"
