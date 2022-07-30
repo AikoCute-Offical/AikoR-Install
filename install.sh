@@ -10,7 +10,7 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}Error：${plain} This script must be run as root user!\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 该脚本必须运行在root用户下!\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -28,7 +28,7 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
-    echo -e "${red}System version not detected, please contact script author!${plain}\n" && exit 1
+    echo -e "${red}当前系统版本暂未支持, 请联系作者!${plain}\n" && exit 1
 fi
 
 arch=$(arch)
@@ -39,13 +39,13 @@ elif [[ $arch == "aarch64" || $arch == "arm64" ]]; then
   arch="arm64-v8a"
 else
   arch="64"
-  echo -e "${red}No schema detected, use default schema: ${arch}${plain}"
+  echo -e "${red}当前架构暂未支持, 使用默认架构: ${arch}${plain}"
 fi
 
-echo "Architecture System: ${arch}"
+echo "系统架构: ${arch}"
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
-    echo "This software does not support 32-bit (x86) system, please use 64-bit (x86_64) system, if found wrong, please contact the author"
+    echo "当前暂未支持 32-bit (x86) 系统, 请使用 64-bit (x86_64) 系统, 如果识别错误, 请联系作者"
     exit 2
 fi
 
@@ -61,15 +61,15 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
-        echo -e "${red}Please use CentOS 7 or later!${plain}\n" && exit 1
+        echo -e "${red}请使用 CentOS 7 或更新版本!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
-        echo -e "${red}Please use Ubuntu 16 or higher!${plain}\n" && exit 1
+        echo -e "${red}请使用 Ubuntu 16 或更新版本!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${red}Please use Debian 8 or later!${plain}\n" && exit 1
+        echo -e "${red}请使用 Debian 8 或更新版本!${plain}\n" && exit 1
     fi
 fi
 
@@ -111,22 +111,22 @@ install_AikoR() {
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/AikoCute-Offical/AikoR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}AikoR version detection failed, maybe GIthub API limit exceeded, please try again later or specify AikoR version setting manually${plain}"
+            echo -e "${red} AikoR 版本检测失败, 可能是 GitHub API超限, 请稍后再试或手动指定 AikoR 版本设置${plain}"
             exit 1
         fi
-        echo -e "The latest version of AikoR has been detected：${last_version}，Start the installation"
+        echo -e "检测到最新AikoR版本：${last_version}，开始安装"
         wget -N --no-check-certificate -O /usr/local/AikoR/AikoR-linux.zip https://github.com/AikoCute-Offical/AikoR/releases/download/${last_version}/AikoR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}AikoR download failed, make sure your server can download Github files${plain}"
+            echo -e "${red}AikoR 下载失败, 请确认您的服务器可以链接到GitHub${plain}"
             exit 1
         fi
     else
         last_version=$1
         url="https://github.com/AikoCute-Offical/AikoR/releases/download/${last_version}/AikoR-linux-${arch}.zip"
-        echo -e "Bắt đầu cài đặt AikoR v$1"
+        echo -e "开始安装 AikoR v$1"
         wget -N --no-check-certificate -O /usr/local/AikoR/AikoR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Download AikoR v$1 Failed, make sure this version exists${plain}"
+            echo -e "${red}下载 AikoR v$1 失败, 请确认该版本是否存在${plain}"
             exit 1
         fi
     fi
@@ -142,23 +142,23 @@ install_AikoR() {
     systemctl daemon-reload
     systemctl stop AikoR
     systemctl enable AikoR
-    echo -e "${green}AikoR ${last_version}${plain} The installation is complete, it is already set to start automatically"
+    echo -e "${green}AikoR ${last_version}${plain} 安装完成, 并已设为自动启动"
     cp geoip.dat /etc/AikoR/
     cp geosite.dat /etc/AikoR/ 
 
     if [[ ! -f /etc/AikoR/aiko.yml ]]; then
         cp aiko.yml /etc/AikoR/
         echo -e ""
-        echo -e "New installation, please refer to previous tutorial：https://github.com/AikoCute-Offical/AikoR，Configure required content"
+        echo -e "全新安装, 请参考之前的教程：https://github.com/AikoCute-Offical/AikoR，配置所需内容"
     else
         systemctl start AikoR
         sleep 2
         check_status
         echo -e ""
         if [[ $? == 0 ]]; then
-            echo -e "${green}AikoR reboot successfully${plain}"
+            echo -e "${green}AikoR 重启完成${plain}"
         else
-            echo -e "${red}AikoR May not start, please use the following AikoR log Check the log information, if it fails to start, the configuration format may have been changed, please go to the wiki to check：https://github.com/AikoCute-Offical/AikoR${plain}"
+            echo -e "${red}AikoR 可能并未启动, 请查看AikoR日志, 如果启动失败，可能是配置格式改变了, 请到wiki查看：https://github.com/AikoCute-Offical/AikoR${plain}"
         fi
     fi
 
@@ -177,14 +177,14 @@ install_AikoR() {
     chmod +x /usr/bin/aikor
 
     echo -e ""
-    echo " How to use the AikoR . management script " 
+    echo " How to use the AikoR . 管理脚本 " 
     echo "------------------------------------------"
-    echo "           AikoR   - Show admin menu      "
+    echo "           AikoR   - 显示管理员菜单      "
     echo "               AikoR by AikoCute          "
     echo "------------------------------------------"
 }
 
-echo -e "${green}Start installation${plain}"
+echo -e "${green}全新安装${plain}"
 install_base
 install_acme
 install_AikoR $1

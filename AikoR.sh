@@ -8,7 +8,7 @@ plain='\033[0m'
 version="v1.0.0"
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} This script must be run as root user!\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}错误: ${plain} 该脚本必须运行在root用户下!\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -26,7 +26,7 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
-    echo -e "${red}The system version is not detected, please contact AikoCute to get it fixed as soon as possible${plain}\n" && exit 1
+    echo -e "${red}当前系统版本暂未支持, 请联系作者!${plain}\n" && exit 1
 fi
 
 os_version=""
@@ -41,15 +41,15 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
-        echo -e "${red}Please use CentOS 7 or later！${plain}\n" && exit 1
+        echo -e "${red}请使用 CentOS 7 或更新版本!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
-        echo -e "${red}Please use Ubuntu 16 or later！${plain}\n" && exit 1
+        echo -e "${red}请使用 Ubuntu 16 或更新版本!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${red}Please use Debian 8 or later！${plain}\n" && exit 1
+        echo -e "${red}请使用 Debian 8 或更新版本!${plain}\n" && exit 1
     fi
 fi
 
@@ -70,7 +70,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "Is it possible to restart AikoR" "y"
+    confirm "是否确认重启 AikoR" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -79,7 +79,7 @@ confirm_restart() {
 }
 
 before_show_menu() {
-    echo && echo -n -e "${yellow}Press enter to return to the main menu: ${plain}" && read temp
+    echo && echo -n -e "${yellow}按回车键返回主菜单: ${plain}" && read temp
     show_menu
 }
 
@@ -96,7 +96,7 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Enter the specified version (default latest version): " && read version
+        echo && echo -n -e "输入指定版本（默认最新版本）: " && read version
     else
         version=$2
     fi
@@ -110,7 +110,7 @@ update() {
 #    fi
     bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh) $version
     if [[ $? == 0 ]]; then
-        echo -e "${green}Update completed, AikoR has been restarted automatically, please use AikoR logs to see the results${plain}"
+        echo -e "${green}更新完成，AikoR已自动重启，请查看AikoR日志${plain}"
         exit
     fi
 
@@ -120,13 +120,13 @@ update() {
 }
 
 config() {
-    echo "AikoR will automatically restart after configuration modification"
+    echo "AikoR 配置修改后会自动重启"
     nano /etc/AikoR/aiko.yml
     sleep 2
     check_status
     case $? in
         0)
-            echo -e "AikoR status: ${green} Running ${plain}"
+            echo -e "AikoR 状态: ${green} 运行中 ${plain}"
             ;;
         1)
             echo -e "It is detected that you do not start AikoR or AikoR does not restart by itself, check the log？[Y/n]" && echo
@@ -137,12 +137,12 @@ config() {
             fi
             ;;
         2)
-            echo -e "AikoR status: ${red} Not installed ${plain}"
+            echo -e "AikoR 状态: ${red} 未安装 ${plain}"
     esac
 }
 
 uninstall() {
-    confirm "Are you sure you want to uninstall AikoR?" "n"
+    confirm "您确定要卸载 AikoR?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -159,7 +159,7 @@ uninstall() {
     rm /usr/bin/AikoR -f
 
     echo ""
-    echo -e "${green}Uninstall successful, Completely uninstalled from the system${plain}"
+    echo -e "${green}卸载成功，从系统中彻底卸载${plain}"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -171,15 +171,15 @@ start() {
     check_status
     if [[ $? == 0 ]]; then
         echo ""
-        echo -e "${green} AikoR is already running ${plain}"
+        echo -e "${green} AikoR 已经启动了 ${plain}"
     else
         systemctl start AikoR
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            echo -e "${green} AikoR has successfully started ${plain}"
+            echo -e "${green} AikoR 启动成功 ${plain}"
         else
-            echo -e "${red} AikoR boot failed, AikoR logs to check for errors${plain}"
+            echo -e "${red} AikoR 启动失败,  请检查 AikoR 日志${plain}"
         fi
     fi
 
@@ -193,9 +193,9 @@ stop() {
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
-        echo -e "${green} AikoR has stopped successfully ${plain}"
+        echo -e "${green} AikoR 停止运行 ${plain}"
     else
-        echo -e "${red} AikoR cannot be stopped, it may be due to the stopping time exceeding two seconds, please check the Logs to see the cause ${plain}"
+        echo -e "${red} AikoR 停止失败, 可能是停止时间超过两秒，请检查日志查看原因 ${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -208,9 +208,9 @@ restart() {
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        echo -e "${green} AikoR has restarted successfully, please use AikoR Logs to see the running log ${plain}"
+        echo -e "${green} AikoR 重启成功, 请查看AikoR日志$ ${plain}"
     else
-        echo -e "${red} AikoR may not be able to start, please use AikoR Logs to view log information later ${plain}"
+        echo -e "${red} AikoR 可能无法启动，请稍后使用AikoR Logs查看日志信息 ${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -227,9 +227,9 @@ status() {
 enable() {
     systemctl enable AikoR
     if [[ $? == 0 ]]; then
-        echo -e "${green} AikoR is set to boot successfully ${plain}"
+        echo -e "${green} AikoR 设置自动启动成功 ${plain}"
     else
-        echo -e "${red} AikoR setup can't start automatically on boot ${plain}"
+        echo -e "${red} AikoR 安装程序无法设置自动启动 ${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -240,9 +240,9 @@ enable() {
 disable() {
     systemctl disable AikoR
     if [[ $? == 0 ]]; then
-        echo -e "${green} AikoR aborted autostart successfully ${plain}"
+        echo -e "${green} AikoR 关闭自动启动 ${plain}"
     else
-        echo -e "${red} AikoR can't cancel boot autostart ${plain}"
+        echo -e "${red} AikoR 无法取消自动启动 ${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -265,11 +265,11 @@ update_shell() {
     wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
     if [[ $? != 0 ]]; then
         echo ""
-        echo -e "${red}Script failed to download, please check if machine can connect to Github${plain}"
+        echo -e "${red}脚本下载失败, 请检查服务器是否能连接到GitHub${plain}"
         before_show_menu
     else
         chmod +x /usr/bin/AikoR
-        echo -e "${green} Script upgrade successful, please run the script again ${plain}" && exit 0
+        echo -e "${green} 脚本更新成功, 请重新运行脚本 ${plain}" && exit 0
     fi
 }
 
@@ -299,7 +299,7 @@ check_uninstall() {
     check_status
     if [[ $? != 2 ]]; then
         echo ""
-        echo -e "${red} AikoR is already installed, please do not reinstall ${plain}"
+        echo -e "${red} AikoR 已经安装了, 无需重复安装 ${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -313,7 +313,7 @@ check_install() {
     check_status
     if [[ $? == 2 ]]; then
         echo ""
-        echo -e "${red} Please install AikoR first ${plain}"
+        echo -e "${red} 请先安装 AikoR ${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -327,29 +327,29 @@ show_status() {
     check_status
     case $? in
         0)
-            echo -e "AikoR status: ${green} Running ${plain}"
+            echo -e "AikoR 状态: ${green} 运行中 ${plain}"
             show_enable_status
             ;;
         1)
-            echo -e "AikoR status: ${yellow} don't run ${plain}"
+            echo -e "AikoR 状态: ${yellow} 没有运行 ${plain}"
             show_enable_status
             ;;
         2)
-            echo -e "AikoR status: ${red} Not Install ${plain}"
+            echo -e "AikoR 状态: ${red} 未安装 ${plain}"
     esac
 }
 
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "Does it automatically start: ${green} Yes ${plain}"
+        echo -e "自动启动: ${green} Yes ${plain}"
     else
-        echo -e "Does it automatically start: ${red} No ${plain}"
+        echo -e "自动启动: ${red} No ${plain}"
     fi
 }
 
 show_AikoR_version() {
-    echo -n "AikoR version："
+    echo -n "AikoR 版本："
     /usr/local/AikoR/AikoR -version
     echo ""
     if [[ $# == 0 ]]; then
@@ -359,39 +359,39 @@ show_AikoR_version() {
 
 show_usage() {
     echo -e ""
-    echo " How to use the AikoR . management script " 
+    echo " How to use the AikoR . 管理脚本 " 
     echo "------------------------------------------"
-    echo "           AikoR   - Show admin menu      "
+    echo "           AikoR   - 显示主菜单      "
     echo "              AikoR by AikoCute           "
     echo "------------------------------------------"
 }
 
 show_menu() {
     echo -e "
-  ${green}AikoR Các tập lệnh quản lý phụ trợ，${plain}${red}không hoạt động với docker${plain}
+  ${green}AikoR 后端管理脚本，${plain}${red} 不支持 docker${plain}
 --- https://github.com/AikoCute-Offical/AikoR ---
   ${green}0.${plain} Setting Config
 ————————————————
-  ${green}1.${plain} Install AikoR
-  ${green}2.${plain} Update AikoR
-  ${green}3.${plain} Uninstall AikoR
+  ${green}1.${plain} 安装 AikoR
+  ${green}2.${plain} 更新 AikoR
+  ${green}3.${plain} 卸载 AikoR
 ————————————————
-  ${green}4.${plain} Launch AikoR
-  ${green}5.${plain} Stop AikoR
-  ${green}6.${plain} Khởi động lại AikoR
-  ${green}7.${plain} View AikoR status
-  ${green}8.${plain} View AikoR logs
+  ${green}4.${plain} 启动 AikoR
+  ${green}5.${plain} 停止 AikoR
+  ${green}6.${plain} 重启 AikoR
+  ${green}7.${plain} 显示 AikoR 状态
+  ${green}8.${plain} 显示 AikoR 日志
 ————————————————
-  ${green}9.${plain} Set AikoR to start automatically
- ${green}10.${plain} Canceling AikoR autostart
+  ${green}9.${plain} 设置 AikoR 自启
+ ${green}10.${plain} 取消 AikoR 自启
 ————————————————
- ${green}11.${plain} Install BBR
- ${green}12.${plain} View AikoR version
- ${green}13.${plain} Update AikoR shell
+ ${green}11.${plain} 安装 BBR
+ ${green}12.${plain} 显示 AikoR 版本
+ ${green}13.${plain} 更新 AikoR 脚本
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
-    echo && read -p "Please enter an option [0-13]: " num
+    echo && read -p "请选择 [0-13]: " num
 
     case "${num}" in
         0) config
@@ -422,7 +422,7 @@ show_menu() {
         ;;
         13) update_shell
         ;;
-        *) echo -e "${red}Please enter the correct number [0-13]${plain}"
+        *) echo -e "${red}请输入正确的号码 [0-13]${plain}"
         ;;
     esac
 }
