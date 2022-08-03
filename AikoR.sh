@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/zh/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,7 +108,7 @@ update() {
 #        fi
 #        return 0
 #    fi
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/zh/AikoR.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}更新完成，AikoR已自动重启，请查看AikoR日志${plain}"
         exit
@@ -262,7 +262,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
+    wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/zh/AikoR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}脚本下载失败, 请检查服务器是否能连接到GitHub${plain}"
