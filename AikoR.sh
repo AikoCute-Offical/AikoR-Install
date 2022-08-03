@@ -34,7 +34,7 @@ show_menu() {
   ${green}0.${plain} Exit Install AikoR
 ————————————————
   ${green}1.${plain} English
-  ${green}2.${plain} 中文
+  ${green}2.${plain} Chinese
   ${green}3.${plain} Vietnamese
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
