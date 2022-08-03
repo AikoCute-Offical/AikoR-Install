@@ -14,7 +14,7 @@ AikoR Projects
 [![Go-Report](https://goreportcard.com/badge/github.com/AikoCute-Offical/AikoR?style=flat-square)](https://goreportcard.com/report/github.com/AikoCute-Offical/AikoR)
 </div>
 
-# AikoR support to install by many other language
+# Multiple languages supported AikoR
 1: Description by English [English](https://github.com/AikoCute-Offical/AikoR-Install/tree/en) 
 
 2: Description by Chinese [Chinese](https://github.com/AikoCute-Offical/AikoR-Install/tree/zh)
