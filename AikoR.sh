@@ -14,17 +14,17 @@ cur_dir=$(pwd)
 
 # install English
 english(){
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/AikoR.sh)
 }
 
 # install Chinese
 chinese(){
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/AikoR.sh)
 }
 
 # install vietnamese
 vietnamese(){
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/vi/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/vi/AikoR.sh)
 }   
 
 show_menu() {
@@ -44,11 +44,11 @@ show_menu() {
     case "${num}" in
         0) exit 0
         ;;
-        1) check_uninstall && install
+        1) english
         ;;
-        2) check_install && update
+        2) chinese
         ;;
-        3) check_install && uninstall
+        3) vietnamese
         ;;
         *) echo -e "${red}Please enter the correct number [0-3]${plain}"
         ;;
