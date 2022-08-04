@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/en/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,7 +108,7 @@ update() {
 #        fi
 #        return 0
 #    fi
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/en/AikoR.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}Update completed, AikoR has been restarted automatically, please use AikoR logs to see the results${plain}"
         exit
@@ -262,7 +262,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
+    wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/en/AikoR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}Script failed to download, please check if machine can connect to Github${plain}"

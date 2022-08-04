@@ -136,7 +136,7 @@ install_AikoR() {
     chmod +x AikoR
     mkdir /etc/AikoR/ -p
     rm /etc/systemd/system/AikoR.service -f
-    file="https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.service"
+    file="https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/en/AikoR.service"
     wget -N --no-check-certificate -O /etc/systemd/system/AikoR.service ${file}
     #cp -f AikoR.service /etc/systemd/system/
     systemctl daemon-reload
@@ -171,7 +171,7 @@ install_AikoR() {
     if [[ ! -f /etc/AikoR/custom_outbound.json ]]; then
         cp custom_outbound.json /etc/AikoR/
     fi
-    curl -o /usr/bin/AikoR -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
+    curl -o /usr/bin/AikoR -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/en/AikoR.sh
     chmod +x /usr/bin/AikoR
     ln -s /usr/bin/AikoR /usr/bin/aikor # compatible lowercase
     chmod +x /usr/bin/aikor
