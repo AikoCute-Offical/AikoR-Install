@@ -108,7 +108,7 @@ update() {
 #        fi
 #        return 0
 #    fi
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/vi/AikoR.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}Cập nhật hoàn tất, AikoR đã được khởi động lại tự động, vui lòng sử dụng nhật ký AikoR để xem kết quả${plain}"
         exit
@@ -262,7 +262,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/AikoR.sh
+    wget -O /usr/bin/AikoR -N --no-check-certificate https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/vi/AikoR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}Tập lệnh không tải xuống được, vui lòng kiểm tra xem máy có thể kết nối với Github không${plain}"
