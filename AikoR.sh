@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/vi/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
