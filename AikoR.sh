@@ -29,7 +29,7 @@ vietnamese(){
 
 show_menu() {
     echo -e "
-  ${green}AikoR Các tập lệnh quản lý phụ trợ，${plain}${red}không hoạt động với docker${plain}
+  ${green}AikoR Backend Management Scripts，${plain}${red}does not work with docker${plain}
 --- https://github.com/AikoCute-Offical/AikoR ---
   ${green}0.${plain} Exit Install AikoR
 ————————————————
