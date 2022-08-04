@@ -26,11 +26,11 @@ Run the link and follow the instructions
 
 1 : Run the link with wget (If not installed, install it)
 ```
-    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/master/AikoR.sh && bash AikoR.sh
+wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/master/AikoR.sh && bash AikoR.sh
 ```
 
 
 2 : Run using bash path
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/master/AikoR.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/master/AikoR.sh)
 ```
