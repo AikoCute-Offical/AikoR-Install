@@ -146,8 +146,8 @@ install_AikoR() {
     cp geoip.dat /etc/AikoR/
     cp geosite.dat /etc/AikoR/ 
 
-    if [[ ! -f /etc/AikoR/aiko.yml ]]; then
-        cp aiko.yml /etc/AikoR/
+    if [[ ! -f /etc/AikoR/aiko.json ]]; then
+        cp aiko.json /etc/AikoR/
         echo -e ""
         echo -e "New installation, please refer to previous tutorial：https://github.com/AikoCute-Offical/AikoR，Configure required content"
     else
