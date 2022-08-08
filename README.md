@@ -32,14 +32,14 @@ AikoR Projects
 
 2 : 使用 bash 路径运行
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/AikoR.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/AikoR.sh)
 ```
 
 3: 只需一次运行即可链接安装
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/install.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/install.sh)
 ```
 或者
 ```
-    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/install.sh && bash install.sh
+wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/install.sh && bash install.sh
 ```
