@@ -26,7 +26,7 @@ AikoR Projects
 
 1 : 使用 wget 运行链接（如果未安装，请安装它）
 ```
-    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/AikoR.sh && bash AikoR.sh
+wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/AikoR.sh && bash AikoR.sh
 ```
 
 
