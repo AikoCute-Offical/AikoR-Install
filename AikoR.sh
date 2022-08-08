@@ -121,7 +121,7 @@ update() {
 
 config() {
     echo "AikoR sẽ tự động khởi động lại sau khi sửa đổi cấu hình"
-    nano /etc/AikoR/aiko.yml
+    nano /etc/AikoR/aiko.json
     sleep 2
     check_status
     case $? in

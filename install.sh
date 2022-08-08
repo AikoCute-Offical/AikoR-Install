@@ -146,8 +146,8 @@ install_AikoR() {
     cp geoip.dat /etc/AikoR/
     cp geosite.dat /etc/AikoR/ 
 
-    if [[ ! -f /etc/AikoR/aiko.yml ]]; then
-        cp aiko.yml /etc/AikoR/
+    if [[ ! -f /etc/AikoR/aiko.json ]]; then
+        cp aiko.json /etc/AikoR/
         echo -e ""
         echo -e "Cài đặt mới, vui lòng tham khảo hướng dẫn trước ： https: //github.com/AikoCute-Offical/AikoR，Configure nội dung yêu cầu"
     else
