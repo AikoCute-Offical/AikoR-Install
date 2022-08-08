@@ -32,14 +32,14 @@ Run the link and follow the instructions
 
 2 : Run using bash path
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/AikoR.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/AikoR.sh)
 ```
 
 3: Link install with just one run
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/install.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/install.sh)
 ```
 or
 ```
-    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/install.sh && bash install.sh
+wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/en/install.sh && bash install.sh
 ```
