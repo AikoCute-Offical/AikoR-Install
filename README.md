@@ -14,23 +14,32 @@ AikoR Projects
 [![Go-Report](https://goreportcard.com/badge/github.com/AikoCute-Offical/AikoR?style=flat-square)](https://goreportcard.com/report/github.com/AikoCute-Offical/AikoR)
 </div>
 
-# Multiple languages supported AikoR
-1: Description by English [English](https://github.com/AikoCute-Offical/AikoR-Install/tree/en) 
+# AikoR hỗ trợ cài đặt nhiều ngôn ngữ
+1: Mô tả bằng English [English](https://github.com/AikoCute-Offical/AikoR-Install/tree/en) 
 
-2: Description by Chinese [Chinese](https://github.com/AikoCute-Offical/AikoR-Install/tree/zh)
+2: Mô tả bằng Tiếng Trung [Chinese](https://github.com/AikoCute-Offical/AikoR-Install/tree/zh)
 
-3: Description by Vietnamese [Vietnamese](https://github.com/AikoCute-Offical/AikoR-Install/tree/vi)
+3: Mô tả bằng Tiếng Việt [Vietnamese](https://github.com/AikoCute-Offical/AikoR-Install/tree/vi)
 
-# User manual
-Run the link and follow the instructions
+# Hướng dẫn sử dụng
+Chạy liên kết và làm theo hướng dẫn
 
-1 : Run the link with wget (If not installed, install it)
+1 : Chạy liên kết với wget (Nếu chưa cài đặt, hãy cài đặt nó)
 ```
-wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/master/AikoR.sh && bash AikoR.sh
+    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh && bash AikoR.sh
 ```
 
 
-2 : Run using bash path
+2 : Chạy bằng đường dẫn bash
 ```
-bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/master/AikoR.sh)
+    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh)
+```
+
+3: Liên kết cài đặt chỉ với một lần chạy
+```
+    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/install.sh)
+```
+or
+```
+    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/install.sh && bash install.sh
 ```
