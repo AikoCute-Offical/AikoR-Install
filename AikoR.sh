@@ -121,7 +121,7 @@ update() {
 
 config() {
     echo "AikoR 配置修改后会自动重启"
-    nano /etc/AikoR/aiko.yml
+    nano /etc/AikoR/aiko.json
     sleep 2
     check_status
     case $? in
