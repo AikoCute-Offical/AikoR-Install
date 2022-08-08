@@ -26,20 +26,20 @@ Chạy liên kết và làm theo hướng dẫn
 
 1 : Chạy liên kết với wget (Nếu chưa cài đặt, hãy cài đặt nó)
 ```
-    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh && bash AikoR.sh
+wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh && bash AikoR.sh
 ```
 
 
 2 : Chạy bằng đường dẫn bash
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh)
 ```
 
 3: Liên kết cài đặt chỉ với một lần chạy
 ```
-    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/install.sh)
+bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/install.sh)
 ```
 or
 ```
-    wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/install.sh && bash install.sh
+wget --no-check-certificate -O AikoR.sh https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/install.sh && bash install.sh
 ```
