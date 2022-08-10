@@ -27,6 +27,16 @@ vietnamese(){
     bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/vi/AikoR.sh)
 }   
 
+dev(){
+  echo -e "${yellow}Do you want to install AikoR for developer?${plain}"
+  read -p "Please enter [y/n]: " dev_confirm
+  if [ "$dev_confirm" == "y" ]; then
+    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/dev/AikoR.sh)
+  else
+    echo -e "${red}Canceled${plain}"
+  fi
+}
+
 show_menu() {
     echo -e "
   ${green}AikoR Backend Management Scripts，${plain}${red}does not work with docker${plain}
@@ -36,6 +46,8 @@ show_menu() {
   ${green}1.${plain} English
   ${green}2.${plain} Chinese
   ${green}3.${plain} Vietnamese
+————————————————
+  ${green}4.${plain} Dev Version
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
@@ -50,7 +62,7 @@ show_menu() {
         ;;
         3) vietnamese
         ;;
-        *) echo -e "${red}Please enter the correct number [0-3]${plain}"
+        *) echo -e "${red}Please enter the correct number [0-4]${plain}"
         ;;
     esac
 }
