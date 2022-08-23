@@ -49,8 +49,6 @@ show_menu() {
 ————————————————
   ${green}4.${plain} Dev Version
  "
- # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
-    show_status
     echo && read -p "Please enter an option [0-4]: " num
 
     case "${num}" in
