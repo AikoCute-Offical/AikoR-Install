@@ -96,7 +96,7 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Enter the specified version (default latest version): " && read version
+        echo && echo -n -e "Enter the specified version (default latest version)(Ex:v0.0.1):  " && read version
     else
         version=$2
     fi
