@@ -100,14 +100,6 @@ update() {
     else
         version=$2
     fi
-#    confirm "Chức năng này sẽ buộc cài đặt lại phiên bản mới nhất và dữ liệu sẽ không bị mất. Bạn có muốn tiếp tục không?" "n"
-#    if [[ $? != 0 ]]; then
-#        echo -e "${red}Đã hủy${plain}"
-#        if [[ $1 != 0 ]]; then
-#            before_show_menu
-#        fi
-#        return 0
-#    fi
     bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/en/AikoR.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}Update completed, AikoR has been restarted automatically, please use AikoR logs to see the results${plain}"
