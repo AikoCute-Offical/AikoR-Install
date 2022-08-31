@@ -100,7 +100,7 @@ update() {
     else
         version=$2
     fi
-    bash <(curl -Ls https://raw.githubusercontents.com/Yuzuki616/V2bX-script/master/install.sh) $version
+    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/vi/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}Cập nhật hoàn tất, AikoR đã được khởi động lại tự động${plain}"
         exit
