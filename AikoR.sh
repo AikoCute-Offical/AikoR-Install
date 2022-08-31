@@ -96,13 +96,14 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "输入指定版本（默认最新版本）(例如:v0.0.1): " && read version
+        echo && echo -n -e "输入指定版本（默认最新版本） (例如: v0.0.1): " && read version
     else
         version=$2
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/zh/AikoR.sh) $version
+
+    bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/zh/install.sh) $version
     if [[ $? == 0 ]]; then
-        echo -e "${green}更新完成，AikoR已自动重启，请查看AikoR日志${plain}"
+        echo -e "${green}更新完成，AikoR已自动重启${plain}"
         exit
     fi
 
