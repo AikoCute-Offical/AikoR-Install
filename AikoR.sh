@@ -96,14 +96,14 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Enter the specified version (default latest version) (eg: v0.0.1):" && read version
+        echo && echo -n -e "Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định) (vd: v0.0.1): " && read version
     else
         version=$2
     fi
 
     bash <(curl -ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-Install/vi/install.sh) $version
     if [[ $? == 0 ]]; then
-        echo -e "${green}Update is complete, AikoR has been restarted automatically${plain}"
+        echo -e "${green}Cập nhật hoàn tất, AikoR đã được khởi động lại tự động${plain}"
         exit
     fi
 
