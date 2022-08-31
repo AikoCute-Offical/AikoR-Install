@@ -96,7 +96,7 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định) (Ví dụ V0.0.1): " && read version
+        echo && echo -n -e "Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định) (vd: v0.0.1): " && read version
     else
         version=$2
     fi
