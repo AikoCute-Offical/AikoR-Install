@@ -96,18 +96,10 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định): " && read version
+        echo && echo -n -e "Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định):(Ví dụ V0.0.1) " && read version
     else
         version=$2
     fi
-#    confirm "Chức năng này sẽ buộc cài đặt lại phiên bản mới nhất và dữ liệu sẽ không bị mất. Bạn có muốn tiếp tục không?" "n"
-#    if [[ $? != 0 ]]; then
-#        echo -e "${red}Đã hủy${plain}"
-#        if [[ $1 != 0 ]]; then
-#            before_show_menu
-#        fi
-#        return 0
-#    fi
     bash <(curl -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/dev/AikoR.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}Cập nhật hoàn tất, AikoR đã được khởi động lại tự động, vui lòng sử dụng nhật ký AikoR để xem kết quả${plain}"
