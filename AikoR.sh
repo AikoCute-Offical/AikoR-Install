@@ -350,6 +350,10 @@ show_AikoR_version() {
     fi
 }
 
+run_speedtest() {
+  curl -Lso- tocdo.net/share | bash
+}
+
 show_usage() {
     echo -e ""
     echo " How to use the AikoR . management script " 
@@ -381,6 +385,7 @@ show_menu() {
  ${green}11.${plain} Install BBR
  ${green}12.${plain} View AikoR version
  ${green}13.${plain} Update AikoR shell
+ ${green}14.${plain} Run speedtest
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     echo && read -p "Please enter an option [0-13]: " num
@@ -414,7 +419,8 @@ show_menu() {
         ;;
         13) update_shell
         ;;
-        *) echo -e "${red}Please enter the correct number [0-13]${plain}"
+        14) run_speedtest
+        *) echo -e "${red}Please enter the correct number [0-14]${plain}"
         ;;
     esac
 }
@@ -447,6 +453,8 @@ if [[ $# > 0 ]]; then
         "version") check_install 0 && show_AikoR_version 0
         ;;
         "update_shell") update_shell
+        ;;
+        "speedtest") run_speedtest
         ;;
         *) show_usage
     esac
