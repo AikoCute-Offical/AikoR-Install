@@ -361,7 +361,7 @@ show_usage() {
 
 # run Speedtest
 run_speedtest() {
-  wget -qO- --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash
+  curl -Lso- tocdo.net/share | bash
 }
 
 show_menu() {
