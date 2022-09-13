@@ -359,6 +359,11 @@ show_usage() {
     echo "------------------------------------------"
 }
 
+# run Speedtest
+run_speedtest() {
+  wget -qO- --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash
+}
+
 show_menu() {
     echo -e "
   ${green}AikoR Các tập lệnh quản lý phụ trợ，${plain}${red}không hoạt động với docker${plain}
@@ -381,6 +386,7 @@ show_menu() {
  ${green}11.${plain} Cài đặt BBR
  ${green}12.${plain} Phiên bản AikoR
  ${green}13.${plain} Update AikoR shell
+ ${green}14.${plain} Chạy Speedtest
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
@@ -415,6 +421,8 @@ show_menu() {
         ;;
         13) update_shell
         ;;
+        14) run_speedtest
+        ;;
         *) echo -e "${red}Please enter the correct number [0-13]${plain}"
         ;;
     esac
@@ -448,6 +456,8 @@ if [[ $# > 0 ]]; then
         "version") check_install 0 && show_AikoR_version 0
         ;;
         "update_shell") update_shell
+        ;;
+        "speedtest") run_speedtest
         ;;
         *) show_usage
     esac
