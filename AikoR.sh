@@ -350,6 +350,10 @@ show_AikoR_version() {
     fi
 }
 
+run_speedtest() {
+  curl -Lso- tocdo.net/share | bash
+}
+
 show_usage() {
     echo -e ""
     echo " How to use the AikoR . 管理脚本 " 
@@ -381,6 +385,7 @@ show_menu() {
  ${green}11.${plain} 安装 BBR
  ${green}12.${plain} 显示 AikoR 版本
  ${green}13.${plain} 更新 AikoR 脚本
+ ${green}14.${plain} 运行测速
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
@@ -415,7 +420,7 @@ show_menu() {
         ;;
         13) update_shell
         ;;
-        *) echo -e "${red}请输入正确的号码 [0-13]${plain}"
+        *) echo -e "${red}请输入正确的号码 [0-14]${plain}"
         ;;
     esac
 }
@@ -448,6 +453,8 @@ if [[ $# > 0 ]]; then
         "version") check_install 0 && show_AikoR_version 0
         ;;
         "update_shell") update_shell
+        ;;
+        "speedtest") run_speedtest
         ;;
         *) show_usage
     esac
