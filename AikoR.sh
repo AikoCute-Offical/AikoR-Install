@@ -423,7 +423,7 @@ show_menu() {
         ;;
         14) run_speedtest
         ;;
-        *) echo -e "${red}Please enter the correct number [0-13]${plain}"
+        *) echo -e "${red}Please enter the correct number [0-14]${plain}"
         ;;
     esac
 }
