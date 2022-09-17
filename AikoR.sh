@@ -354,6 +354,13 @@ run_speedtest() {
   curl -Lso- tocdo.net/share | bash
 }
 
+#check ip 
+IP_VPS=`curl -s https://ipinfo.io/ip`
+func_check_ip()
+{
+    echo -e "IP VPS: ${green}${IP_VPS}${plain}"
+}
+
 show_usage() {
     echo -e ""
     echo " How to use the AikoR . management script " 
@@ -386,6 +393,7 @@ show_menu() {
  ${green}12.${plain} View AikoR version
  ${green}13.${plain} Update AikoR shell
  ${green}14.${plain} Run speedtest
+ ${green}15.${plain} Check IP
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     echo && read -p "Please enter an option [0-13]: " num
@@ -420,6 +428,9 @@ show_menu() {
         13) update_shell
         ;;
         14) run_speedtest
+        ;;
+        15) func_check_ip
+        ;;
         *) echo -e "${red}Please enter the correct number [0-14]${plain}"
         ;;
     esac
@@ -455,6 +466,8 @@ if [[ $# > 0 ]]; then
         "update_shell") update_shell
         ;;
         "speedtest") run_speedtest
+        ;;
+        "ip") func_check_ip
         ;;
         *) show_usage
     esac
