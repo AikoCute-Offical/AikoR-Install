@@ -352,7 +352,7 @@ show_AikoR_version() {
 
 func_check_ip()
 {
-    IP_VPS='curl -s https://ipinfo.io/ip'
+    IP_VPS=`curl -s https://ipinfo.io/ip`
     echo -e "IP VPS của bạn là: ${green}${IP_VPS}${plain}"
 }
 
