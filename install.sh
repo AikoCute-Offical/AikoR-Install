@@ -171,6 +171,9 @@ install_AikoR() {
     if [[ ! -f /etc/AikoR/custom_outbound.json ]]; then
         cp custom_outbound.json /etc/AikoR/
     fi
+    if [[ ! -f /etc/AikoR/AikoBlock ]]; then
+        cp AikoBlock /etc/AikoR/
+    fi
     curl -o /usr/bin/AikoR -Ls https://raw.githubusercontent.com/AikoCute-Offical/AikoR-install/zh/AikoR.sh
     chmod +x /usr/bin/AikoR
     ln -s /usr/bin/AikoR /usr/bin/aikor # compatible lowercase
