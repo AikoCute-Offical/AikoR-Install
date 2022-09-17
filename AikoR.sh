@@ -354,6 +354,12 @@ run_speedtest() {
   curl -Lso- tocdo.net/share | bash
 }
 
+IP_VPS=`curl -s https://ipinfo.io/ip`
+func_check_ip()
+{
+    echo -e "IP VPS : ${green}${IP_VPS}${plain}"
+}
+
 show_usage() {
     echo -e ""
     echo " How to use the AikoR . 管理脚本 " 
@@ -386,6 +392,7 @@ show_menu() {
  ${green}12.${plain} 显示 AikoR 版本
  ${green}13.${plain} 更新 AikoR 脚本
  ${green}14.${plain} 运行测速
+ ${green}15.${plain} 显示 IP
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
@@ -420,7 +427,11 @@ show_menu() {
         ;;
         13) update_shell
         ;;
-        *) echo -e "${red}请输入正确的号码 [0-14]${plain}"
+        14) run_speedtest
+        ;;
+        15) func_check_ip
+        ;;
+        *) echo -e "${red}请输入正确的号码 [0-15]${plain}"
         ;;
     esac
 }
@@ -455,6 +466,8 @@ if [[ $# > 0 ]]; then
         "update_shell") update_shell
         ;;
         "speedtest") run_speedtest
+        ;;
+        "ip") func_check_ip
         ;;
         *) show_usage
     esac
