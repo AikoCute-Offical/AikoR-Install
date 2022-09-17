@@ -53,6 +53,8 @@ elif [[ x"${release}" == x"debian" ]]; then
     fi
 fi
 
+IP_VPS=`curl -s https://ipinfo.io/ip`
+
 confirm() {
     if [[ $# > 1 ]]; then
         echo && read -p "$1 [y or n$2]: " temp
@@ -352,7 +354,6 @@ show_AikoR_version() {
 
 func_check_ip()
 {
-    IP_VPS=`curl -s https://ipinfo.io/ip`
     echo -e "IP VPS của bạn là: ${green}${IP_VPS}${plain}"
 }
 
