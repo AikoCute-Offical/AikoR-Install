@@ -350,6 +350,12 @@ show_AikoR_version() {
     fi
 }
 
+func_check_ip()
+{
+    IP_VPS='curl -s https://ipinfo.io/ip'
+    echo -e "IP VPS của bạn là: ${green}${IP_VPS}${plain}"
+}
+
 show_usage() {
     echo -e ""
     echo " How to use the AikoR . management script " 
@@ -379,14 +385,15 @@ show_menu() {
   ${green}6.${plain} Khởi động lại AikoR
   ${green}7.${plain} Trạng Thái AikoR
   ${green}8.${plain} Logs AikoR
+  ${green}9.${plain} Check IP VPS
 ————————————————
-  ${green}9.${plain} Đặt AikoR để bắt đầu tự động
- ${green}10.${plain} Hủy tự động khởi động AikoR
+  ${green}10.${plain} Đặt AikoR để bắt đầu tự động
+ ${green}11.${plain} Hủy tự động khởi động AikoR
 ————————————————
- ${green}11.${plain} Cài đặt BBR
- ${green}12.${plain} Phiên bản AikoR
- ${green}13.${plain} Update AikoR shell
- ${green}14.${plain} Chạy Speedtest
+ ${green}12.${plain} Cài đặt BBR
+ ${green}13.${plain} Phiên bản AikoR
+ ${green}14.${plain} Update AikoR shell
+ ${green}15.${plain} Chạy Speedtest
  "
  # Cập nhật tiếp theo có thể được thêm vào chuỗi trên
     show_status
@@ -411,19 +418,21 @@ show_menu() {
         ;;
         8) check_install && show_log
         ;;
-        9) check_install && enable
+        9) func_check_ip
         ;;
-        10) check_install && disable
+        10) check_install && enable
         ;;
-        11) install_bbr
+        11) check_install && disable
         ;;
-        12) check_install && show_AikoR_version
+        12) install_bbr
         ;;
-        13) update_shell
+        13) check_install && show_AikoR_version
         ;;
-        14) run_speedtest
+        14) update_shell
         ;;
-        *) echo -e "${red}Please enter the correct number [0-14]${plain}"
+        15) run_speedtest
+        ;;
+        *) echo -e "${red}Please enter the correct number [0-15]${plain}"
         ;;
     esac
 }
@@ -458,6 +467,8 @@ if [[ $# > 0 ]]; then
         "update_shell") update_shell
         ;;
         "speedtest") run_speedtest
+        ;;
+        "ip" ) func_check_ip
         ;;
         *) show_usage
     esac
